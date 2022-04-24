@@ -70,7 +70,7 @@ jobs:
         branch-name: "ALMTestSolution"
 
     - name: Merge ALMTestSolution -> staging
-        uses: devmasx/merge-branch@master
+      uses: devmasx/merge-branch@master
         with:
           type: now
           from_branch: ALMTestSolution
@@ -85,7 +85,6 @@ jobs:
         password-secret: ${{ secrets.password }}
         solution-name: "ALMTestSolution2"
         solution-output-file: ${{ github.event.inputs.solution_exported_folder}}/ALMTestSolution2.zip
-
 
     - name: unpack-solution action
       uses: microsoft/powerplatform-actions/unpack-solution@0.4.0
@@ -105,7 +104,7 @@ jobs:
         branch-name: "ALMTestSolution2"
 
     - name: Merge ALMTestSolution2 -> staging
-        uses: devmasx/merge-branch@master
+      uses: devmasx/merge-branch@master
         with:
           type: now
           from_branch: ALMTestSolution2
