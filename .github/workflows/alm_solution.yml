@@ -87,7 +87,7 @@ jobs:
           git fetch --unshallow
           git checkout -b staging
           git merge origin ALMTestSolution -m "Auto-merge to staging"
-          git push -u origin staging
+          git push --set-upstream origin staging
 
     - name: export-solution action
       uses: microsoft/powerplatform-actions/export-solution@0.4.0
