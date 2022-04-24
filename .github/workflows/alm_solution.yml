@@ -1,6 +1,4 @@
 name: export-and-branch-solution
-# Export solution from DEV environment
-#  unpack it and prepare, commit and push a git branch with the changes
 
 on:
   workflow_dispatch:
@@ -67,15 +65,7 @@ jobs:
         solution-target-folder: ${{ github.event.inputs.solution_target_folder}}/ALMTestSolution
         repo-token: ${{ secrets.GITHUB_TOKEN }}
         allow-empty-commit: true
-        branch-name: ALMTestSolution${{github.run_id}}
-
-    # - name: Merge ALMTestSolution -> staging
-    #   uses: devmasx/merge-branch@master
-    #   with:
-    #     type: now
-    #     from_branch: ALMTestSolution
-    #     target_branch: staging
-    #     github_token: ${{ github.token }}
+        branch-name: ALMTestSolutionOne${{github.run_id}}
 
     - name: Set Git config
       run: |
@@ -86,7 +76,7 @@ jobs:
       run: |
           git fetch
           git checkout -b staging
-          git merge origin/ALMTestSolution${{github.run_id}} -m "Auto-merge to staging"
+          git merge origin/ALMTestSolutionOne${{github.run_id}} -m "Auto-merge to staging"
           git push --set-upstream origin staging
 
     - name: export-solution action
@@ -113,7 +103,7 @@ jobs:
         solution-target-folder: ${{ github.event.inputs.solution_target_folder}}/ALMTestSolution2
         repo-token: ${{ secrets.GITHUB_TOKEN }}
         allow-empty-commit: true
-        branch-name: ALMTestSolution2${{github.run_id}}
+        branch-name: ALMTestSolutionTwo${{github.run_id}}
 
     # - name: Merge ALMTestSolution2 -> staging
     #   uses: devmasx/merge-branch@master
@@ -125,9 +115,11 @@ jobs:
 
     - name: Merge alm2 to staging
       run: |
-          git fetch --unshallow
-          git checkout staging
-          git pull
-          git merge origin/ALMTestSolution2${{github.run_id}} -m "Auto-merge to staging"
+          git merge origin/ALMTestSolutionTwo${{github.run_id}} -m "Auto-merge to staging"
           git push
+
+    - name: delete branches
+      run: |
+          git push origin --delete ALMTestSolutionOne${{github.run_id}}
+          git push origin --delete ALMTestSolutionTwo${{github.run_id}}
 
