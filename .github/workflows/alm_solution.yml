@@ -71,11 +71,11 @@ jobs:
 
     - name: Merge ALMTestSolution -> staging
       uses: devmasx/merge-branch@master
-        with:
-          type: now
-          from_branch: ALMTestSolution
-          target_branch: staging
-          github_token: ${{ github.token }}
+      with:
+        type: now
+        from_branch: ALMTestSolution
+        target_branch: staging
+        github_token: ${{ github.token }}
 
     - name: export-solution action
       uses: microsoft/powerplatform-actions/export-solution@0.4.0
@@ -105,9 +105,9 @@ jobs:
 
     - name: Merge ALMTestSolution2 -> staging
       uses: devmasx/merge-branch@master
-        with:
-          type: now
-          from_branch: ALMTestSolution2
-          target_branch: staging
-          github_token: ${{ github.token }}
+      with:
+        type: now
+        from_branch: ALMTestSolution2
+        target_branch: staging
+        github_token: ${{ github.token }}
 
