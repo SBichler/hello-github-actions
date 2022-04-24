@@ -67,7 +67,7 @@ jobs:
         solution-target-folder: ${{ github.event.inputs.solution_target_folder}}/ALMTestSolution
         repo-token: ${{ secrets.GITHUB_TOKEN }}
         allow-empty-commit: true
-        branch-name: ALMTestSolution
+        branch-name: ALMTestSolution${{github.run_id}}
 
     # - name: Merge ALMTestSolution -> staging
     #   uses: devmasx/merge-branch@master
@@ -86,7 +86,7 @@ jobs:
       run: |
           git fetch
           git checkout -b staging
-          git merge ALMTestSolution -m "Auto-merge to staging"
+          git merge origin/ALMTestSolution${{github.run_id}} -m "Auto-merge to staging"
           git push --set-upstream origin staging
 
     - name: export-solution action
@@ -113,7 +113,7 @@ jobs:
         solution-target-folder: ${{ github.event.inputs.solution_target_folder}}/ALMTestSolution2
         repo-token: ${{ secrets.GITHUB_TOKEN }}
         allow-empty-commit: true
-        branch-name: ALMTestSolution2
+        branch-name: ALMTestSolution2${{github.run_id}}
 
     # - name: Merge ALMTestSolution2 -> staging
     #   uses: devmasx/merge-branch@master
@@ -128,6 +128,6 @@ jobs:
           git fetch --unshallow
           git checkout staging
           git pull
-          git merge ALMTestSolution2 -m "Auto-merge to staging"
+          git merge origin/ALMTestSolution2${{github.run_id}} -m "Auto-merge to staging"
           git push
 
