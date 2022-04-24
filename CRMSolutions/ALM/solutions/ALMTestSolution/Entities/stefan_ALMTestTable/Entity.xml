@@ -611,10 +611,10 @@
             <Description description="Grund für den Status von ALMTestTable" languagecode="1031" />
           </Descriptions>
         </attribute>
-        <attribute PhysicalName="stefan_ALMTestColumn">
+        <attribute PhysicalName="stefan_ALMTestColumnX">
           <Type>nvarchar</Type>
-          <Name>stefan_almtestcolumn</Name>
-          <LogicalName>stefan_almtestcolumn</LogicalName>
+          <Name>stefan_almtestcolumnx</Name>
+          <LogicalName>stefan_almtestcolumnx</LogicalName>
           <RequiredLevel>none</RequiredLevel>
           <DisplayMask>ValidForAdvancedFind|ValidForForm|ValidForGrid</DisplayMask>
           <ImeMode>auto</ImeMode>
@@ -645,7 +645,7 @@
           <MaxLength>100</MaxLength>
           <Length>200</Length>
           <displaynames>
-            <displayname description="ALMTestColumn" languagecode="1031" />
+            <displayname description="ALMTestColumnX" languagecode="1031" />
           </displaynames>
           <Descriptions>
             <Description description="" languagecode="1031" />
