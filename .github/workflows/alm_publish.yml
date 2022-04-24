@@ -1,0 +1,59 @@
+name: pack-and-publish-solution
+
+on:
+  workflow_dispatch:
+    inputs:
+      solution_code_folder:
+       required: true
+       default: CRMSolutions/ALM/solutions/
+      solution_packed_folder:
+        required: true
+        default: CRMSolutions/ALM/zip/
+
+env:
+#edit your values here
+  ENVIRONMENT_URL: https://d416b7807c67483487e19f9676a12f2c.crm.dynamics.com/
+  USERNAME: admin@M365x20969046.OnMicrosoft.com
+
+
+jobs:
+  export-from-dev:
+    runs-on: windows-latest
+    env:
+      RUNNER_DEBUG: 1
+
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        lfs: true
+
+    - name: who-am-i action
+      uses: microsoft/powerplatform-actions/who-am-i@0.4.0
+      with:
+        environment-url: ${{env.ENVIRONMENT_URL}}
+        user-name: ${{env.USERNAME}}
+        password-secret: ${{ secrets.password }}
+
+    - name: pack-solution action
+      uses: microsoft/powerplatform-actions/pack-solution@0.4.0
+      with:
+        solution-file: ${{ github.event.inputs.solution_code_folder}}/ALMTestSolution/Other/Solution.xml
+        solution-folder: ${{ github.event.inputs.solution_packed_folder}}
+        solution-type: 'Unmanaged'
+        overwrite-files: true
+
+    - name: import-solution action
+      uses: microsoft/powerplatform-actions/import-solution@0.4.0
+      with:
+        environment-url: ${{env.ENVIRONMENT_URL}}
+        user-name: ${{env.USERNAME}}
+        password-secret: ${{ secrets.password }}
+        solution-name: "ALMTestSolution"
+        solution-file: ${{ github.event.inputs.solution_packed_folder}}/ALMTestSolution.zip
+
+    - name: publish-solution
+      uses: microsoft/powerplatform-actions/publish-solution@0.4.0
+      with:
+        environment-url: ${{env.ENVIRONMENT_URL}}
+        user-name: ${{env.USERNAME}}
+        password-secret: ${{ secrets.password }}
