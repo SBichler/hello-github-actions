@@ -84,9 +84,9 @@ jobs:
 
     - name: Merge alm1 to staging
       run: |
-          git fetch --unshallow
+          git fetch
           git checkout -b staging
-          git merge origin ALMTestSolution -m "Auto-merge to staging"
+          git merge ALMTestSolution -m "Auto-merge to staging"
           git push --set-upstream origin staging
 
     - name: export-solution action
@@ -128,6 +128,6 @@ jobs:
           git fetch --unshallow
           git checkout staging
           git pull
-          git merge origin ALMTestSolution2 -m "Auto-merge to staging"
+          git merge ALMTestSolution2 -m "Auto-merge to staging"
           git push
 
