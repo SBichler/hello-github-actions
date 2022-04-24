@@ -117,10 +117,3 @@ jobs:
       run: |
           git push origin --delete ALMTestSolutionOne${{github.run_id}}
           git push origin --delete ALMTestSolutionTwo${{github.run_id}}
-
-    - name: Create Pull Request
-      uses: peter-evans/create-pull-request@v4
-      with:
-        commit-message: Exported and unpacked CRM solutions ready to be merged
-        title: Solution update
-        branch: main
