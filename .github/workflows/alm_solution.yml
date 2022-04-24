@@ -5,7 +5,7 @@ name: export-and-branch-solution
 on:
   workflow_dispatch:
     inputs:
-        solution_exported_folder:
+      solution_exported_folder:
         description: 'folder name for staging the exported solution *do not change*'
         required: true
         default: CRMSolutions/ALM/out/exported/
