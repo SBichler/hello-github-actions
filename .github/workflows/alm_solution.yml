@@ -72,7 +72,7 @@ jobs:
         solution-target-folder: ${{ github.event.inputs.solution_target_folder}}/ALMTestSolution
         repo-token: ${{ secrets.GITHUB_TOKEN }}
         allow-empty-commit: true
-        branch-name: "ALMTestSolution"$NOW
+        branch-name: "ALMTestSolution$NOW"
 
     # - name: Merge ALMTestSolution -> staging
     #   uses: devmasx/merge-branch@master
@@ -118,7 +118,7 @@ jobs:
         solution-target-folder: ${{ github.event.inputs.solution_target_folder}}/ALMTestSolution2
         repo-token: ${{ secrets.GITHUB_TOKEN }}
         allow-empty-commit: true
-        branch-name: "ALMTestSolution2"$NOW
+        branch-name: "ALMTestSolution2$NOW"
 
     # - name: Merge ALMTestSolution2 -> staging
     #   uses: devmasx/merge-branch@master
