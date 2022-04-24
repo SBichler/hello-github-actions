@@ -37,7 +37,7 @@ jobs:
     - name: pack-solution action
       uses: microsoft/powerplatform-actions/pack-solution@0.4.0
       with:
-        solution-file: ${{ github.event.inputs.solution_packed_folder}}/ALMTargetSolution.zip
+        solution-file: ${{ github.event.inputs.solution_packed_folder}}/ALMTestSolution.zip
         solution-folder: ${{ github.event.inputs.solution_code_folder}}/ALMTestSolution
         solution-type: 'Unmanaged'
         overwrite-files: true
@@ -48,8 +48,8 @@ jobs:
         environment-url: ${{env.ENVIRONMENT_URL}}
         user-name: ${{env.USERNAME}}
         password-secret: ${{ secrets.password }}
-        solution-name: "ALMTargetSolution"
-        solution-file: ${{ github.event.inputs.solution_packed_folder}}/ALMTargetSolution.zip
+        solution-file: ${{ github.event.inputs.solution_packed_folder}}/ALMTestSolution.zip
+        publish-changes: true
 
     - name: publish-solution
       uses: microsoft/powerplatform-actions/publish-solution@0.4.0
