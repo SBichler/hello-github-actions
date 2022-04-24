@@ -115,6 +115,9 @@ jobs:
 
     - name: Merge alm2 to staging
       run: |
+          git fetch
+          git checkout staging
+          git pull
           git merge origin/ALMTestSolutionTwo${{github.run_id}} -m "Auto-merge to staging"
           git push
 
