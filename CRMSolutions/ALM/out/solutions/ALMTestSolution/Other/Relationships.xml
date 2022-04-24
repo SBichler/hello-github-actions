@@ -1,9 +1,0 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<EntityRelationships xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <EntityRelationship Name="business_unit_stefan_almtesttable" />
-  <EntityRelationship Name="lk_stefan_almtesttable_createdby" />
-  <EntityRelationship Name="lk_stefan_almtesttable_modifiedby" />
-  <EntityRelationship Name="owner_stefan_almtesttable" />
-  <EntityRelationship Name="team_stefan_almtesttable" />
-  <EntityRelationship Name="user_stefan_almtesttable" />
-</EntityRelationships>
