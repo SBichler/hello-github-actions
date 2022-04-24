@@ -35,11 +35,6 @@ jobs:
       with:
         lfs: true
 
-    - name: Set current date as env variable
-      run: echo "NOW=%date:~6,4%%date:~3,2%%date:~0,2%" >> $GITHUB_ENV
-    - name: Echo current date
-      run: echo ${{env.NOW}}
-
     - name: who-am-i action
       uses: microsoft/powerplatform-actions/who-am-i@0.4.0
       with:
@@ -72,7 +67,7 @@ jobs:
         solution-target-folder: ${{ github.event.inputs.solution_target_folder}}/ALMTestSolution
         repo-token: ${{ secrets.GITHUB_TOKEN }}
         allow-empty-commit: true
-        branch-name: ALMTestSolution${{env.NOW}}
+        branch-name: ALMTestSolution
 
     # - name: Merge ALMTestSolution -> staging
     #   uses: devmasx/merge-branch@master
@@ -91,7 +86,7 @@ jobs:
       run: |
           git fetch --unshallow
           git checkout -b staging
-          git merge origin ALMTestSolution${{env.NOW}} -m "Auto-merge to staging"
+          git merge origin ALMTestSolution -m "Auto-merge to staging"
           git push -u origin staging
 
     - name: export-solution action
@@ -118,7 +113,7 @@ jobs:
         solution-target-folder: ${{ github.event.inputs.solution_target_folder}}/ALMTestSolution2
         repo-token: ${{ secrets.GITHUB_TOKEN }}
         allow-empty-commit: true
-        branch-name: ALMTestSolution2${{env.NOW}}
+        branch-name: ALMTestSolution2
 
     # - name: Merge ALMTestSolution2 -> staging
     #   uses: devmasx/merge-branch@master
@@ -133,6 +128,6 @@ jobs:
           git fetch --unshallow
           git checkout staging
           git pull
-          git merge origin ALMTestSolution2${{env.NOW}} -m "Auto-merge to staging"
+          git merge origin ALMTestSolution2 -m "Auto-merge to staging"
           git push
 
