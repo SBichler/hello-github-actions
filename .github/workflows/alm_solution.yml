@@ -69,13 +69,26 @@ jobs:
         allow-empty-commit: true
         branch-name: "ALMTestSolution"
 
-    - name: Merge ALMTestSolution -> staging
-      uses: devmasx/merge-branch@master
-      with:
-        type: now
-        from_branch: ALMTestSolution
-        target_branch: staging
-        github_token: ${{ github.token }}
+    # - name: Merge ALMTestSolution -> staging
+    #   uses: devmasx/merge-branch@master
+    #   with:
+    #     type: now
+    #     from_branch: ALMTestSolution
+    #     target_branch: staging
+    #     github_token: ${{ github.token }}
+
+    - name: Set Git config
+      run: |
+          git config --local user.email "actions@github.com"
+          git config --local user.name "Github Actions"
+
+    - name: Merge alm1 back to staging
+      run: |
+          git fetch --unshallow
+          git checkout -b staging
+          git pull
+          git merge origin ALMTestSolution -m "Auto-merge to staging"
+          git push
 
     - name: export-solution action
       uses: microsoft/powerplatform-actions/export-solution@0.4.0
@@ -103,11 +116,19 @@ jobs:
         allow-empty-commit: true
         branch-name: "ALMTestSolution2"
 
-    - name: Merge ALMTestSolution2 -> staging
-      uses: devmasx/merge-branch@master
-      with:
-        type: now
-        from_branch: ALMTestSolution2
-        target_branch: staging
-        github_token: ${{ github.token }}
+    # - name: Merge ALMTestSolution2 -> staging
+    #   uses: devmasx/merge-branch@master
+    #   with:
+    #     type: now
+    #     from_branch: ALMTestSolution2
+    #     target_branch: staging
+    #     github_token: ${{ github.token }}
+
+    - name: Merge alm2 back to staging
+      run: |
+          git fetch --unshallow
+          git checkout -b staging
+          git pull
+          git merge origin ALMTestSolution2 -m "Auto-merge to staging"
+          git push
 
