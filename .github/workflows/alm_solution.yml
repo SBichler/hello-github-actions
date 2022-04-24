@@ -35,6 +35,11 @@ jobs:
       with:
         lfs: true
 
+    - name: Set current date as env variable
+      run: echo "NOW::$(date +'%Y-%m-%dT%H:%M:%S')" >> $GITHUB_ENV
+    - name: Echo current date
+      run: echo $NOW
+
     - name: who-am-i action
       uses: microsoft/powerplatform-actions/who-am-i@0.4.0
       with:
@@ -67,7 +72,7 @@ jobs:
         solution-target-folder: ${{ github.event.inputs.solution_target_folder}}/ALMTestSolution
         repo-token: ${{ secrets.GITHUB_TOKEN }}
         allow-empty-commit: true
-        branch-name: "ALMTestSolution"
+        branch-name: "ALMTestSolution"$NOW
 
     # - name: Merge ALMTestSolution -> staging
     #   uses: devmasx/merge-branch@master
@@ -82,13 +87,12 @@ jobs:
           git config --local user.email "actions@github.com"
           git config --local user.name "Github Actions"
 
-    - name: Merge alm1 back to staging
+    - name: Merge alm1 to staging
       run: |
           git fetch --unshallow
           git checkout -b staging
+          git merge origin ALMTestSolution$NOW -m "Auto-merge to staging"
           git push -u origin staging
-          git merge origin ALMTestSolution -m "Auto-merge to staging"
-          git push
 
     - name: export-solution action
       uses: microsoft/powerplatform-actions/export-solution@0.4.0
@@ -114,7 +118,7 @@ jobs:
         solution-target-folder: ${{ github.event.inputs.solution_target_folder}}/ALMTestSolution2
         repo-token: ${{ secrets.GITHUB_TOKEN }}
         allow-empty-commit: true
-        branch-name: "ALMTestSolution2"
+        branch-name: "ALMTestSolution2"$NOW
 
     # - name: Merge ALMTestSolution2 -> staging
     #   uses: devmasx/merge-branch@master
@@ -124,11 +128,11 @@ jobs:
     #     target_branch: staging
     #     github_token: ${{ github.token }}
 
-    - name: Merge alm2 back to staging
+    - name: Merge alm2 to staging
       run: |
           git fetch --unshallow
           git checkout staging
           git pull
-          git merge origin ALMTestSolution2 -m "Auto-merge to staging"
+          git merge origin ALMTestSolution2$NOW -m "Auto-merge to staging"
           git push
 
