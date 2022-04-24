@@ -37,8 +37,8 @@ jobs:
     - name: pack-solution action
       uses: microsoft/powerplatform-actions/pack-solution@0.4.0
       with:
-        solution-file: ${{ github.event.inputs.solution_code_folder}}/ALMTestSolution/Other/Solution.xml
-        solution-folder: ${{ github.event.inputs.solution_packed_folder}}
+        solution-file: ${{ github.event.inputs.solution_packed_folder}}/ALMTestSolution.zip
+        solution-folder: ${{ github.event.inputs.solution_code_folder}}/ALMTestSolution
         solution-type: 'Unmanaged'
         overwrite-files: true
 
