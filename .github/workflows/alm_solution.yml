@@ -121,8 +121,9 @@ jobs:
           git merge origin/ALMTestSolutionTwo${{github.run_id}} -m "Auto-merge to staging"
           git push
 
-    - name: delete branches
+    - name: delete branches, start pr
       run: |
           git push origin --delete ALMTestSolutionOne${{github.run_id}}
           git push origin --delete ALMTestSolutionTwo${{github.run_id}}
+          git request-pull main ./
 
