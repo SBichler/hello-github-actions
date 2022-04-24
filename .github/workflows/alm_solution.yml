@@ -86,7 +86,7 @@ jobs:
       run: |
           git fetch --unshallow
           git checkout -b staging
-          git pull
+          git push -u origin staging
           git merge origin ALMTestSolution -m "Auto-merge to staging"
           git push
 
@@ -127,7 +127,7 @@ jobs:
     - name: Merge alm2 back to staging
       run: |
           git fetch --unshallow
-          git checkout -b staging
+          git checkout staging
           git pull
           git merge origin ALMTestSolution2 -m "Auto-merge to staging"
           git push
